@@ -23,6 +23,12 @@ public class GlobalAlignmentAffine {
 		
 		GlobalAlignmentAffine GAA = new GlobalAlignmentAffine(S1,S2,miscost,gapopen,gapextend);
 		GAA.findMatrix();
+		String[] aligned = GAA.recursiveFindPath(S1.length(), S2.length());
+		
+		for(String s : aligned) {
+			System.out.println(s);
+		}
+		
 	}
 	
 	public GlobalAlignmentAffine(String S1, String S2, int miscost, int gapopen, int gapextend) {
@@ -126,6 +132,73 @@ public class GlobalAlignmentAffine {
 		print(G);
 		System.out.println("D");
 		print(D);
+		
+		S1 = S1.substring(1);
+		S2 = S2.substring(1);
+	}
+	
+	public String[] recursiveFindPath(int i, int j) {
+		String alignedString1 = "";
+		String alignedString2 = "";
+		if (i == 0) {
+			for (int k = 1; k <= j; k++) {
+				alignedString1 = "-" + alignedString1;
+				alignedString2 = S2.charAt(j - k) + alignedString2;
+				System.out.println(S2.charAt(j - k));
+			}
+
+			return new String[] { alignedString1, alignedString2 };
+
+		} else if (j == 0) {
+
+			for (int k = 1; k <= i; k++) {
+				
+				alignedString1 = S1.charAt(i - k) + alignedString1;
+				alignedString2 = "-" + alignedString2;
+				System.out.println(i-k);
+				System.out.println(S1.charAt(i - k));
+			}
+
+			return new String[] { alignedString1, alignedString2 };
+		}
+		
+		//suchen nach Minimum in D zum traceback
+		int sprung = min(D[i-1][j-1],D[i-1][j],D[i][j-1]);
+		
+		
+		//Ruecksprung nach Oben-Links
+		if (D[i - 1][j - 1] == sprung) {
+
+			alignedString1 = "" + S1.charAt(i - 1);
+			alignedString2 = "" + S2.charAt(j - 1);
+			//System.out.println(alignedString1);
+			i -= 1;
+			j -= 1;
+
+		//Ruecksprung nach Links
+		} else if (D[i][j - 1] == sprung) {
+
+			alignedString1 = "-";
+			alignedString2 = "" + S2.charAt(j - 1);
+
+			j -= 1;
+
+		//Ruecksprung nach Oben
+		} else {
+
+			alignedString1 = "" + S1.charAt(i - 1);
+			alignedString2 = "-";
+
+			i -= 1;
+		}
+
+		//Rekursiver Aufruf
+		String[] alignedStrings = recursiveFindPath(i, j);
+
+		alignedString1 = alignedStrings[0] + alignedString1;
+		alignedString2 = alignedStrings[1] + alignedString2;
+		
+		return new String[] { alignedString1, alignedString2 };
 	}
 
 	
