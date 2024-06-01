@@ -217,7 +217,7 @@ public class GlobalAlignmentAffine {
 			System.out.println();
 		}
 		System.out.println();
-		//System.out.println("Edit-Distanz: " + matrix[matrix.length-1][matrix[0].length-1]);
+		System.out.println("Edit-Distanz: " + matrix[matrix.length-1][matrix[0].length-1]);
 
 	}
 }
