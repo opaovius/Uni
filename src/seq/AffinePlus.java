@@ -210,31 +210,3 @@ public class AffinePlus {
 	}
 
 }
-
-class Node {
-	
-	int cost;
-	String tag;
-	
-	public Node(int cost, String tag) {
-		this.cost = cost;
-		this.tag = tag;
-	}
-	
-	public void setCost(int cost){
-		this.cost = cost;
-	}
-	
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-	
-	public int getCost() {
-		return cost;
-	}
-	
-	public String getTag() {
-		return tag;
-	}
-	
-}
