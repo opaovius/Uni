@@ -15,7 +15,7 @@ public class ProfileSequenceAlignment {
 	double incost;
 	String toAlign;
 	
-	/*
+	
 	public static void main(String args[]) {
 		String S1 = "HAL";
 		String S2 = "SAA";
@@ -32,8 +32,8 @@ public class ProfileSequenceAlignment {
 		PSA.addSequence("-SL");
 		
 	}
-	*/
 	
+	/*
 	public static void main(String[] args) {
 		double incost = Double.parseDouble(args[0]);
 		double delcost = Double.parseDouble(args[1]);
@@ -53,7 +53,7 @@ public class ProfileSequenceAlignment {
 		
 		PSA.addSequence("-SL");
 	}
-	
+	*/
 	
 	
 	
@@ -94,7 +94,7 @@ public class ProfileSequenceAlignment {
 		
 		for(int x = 0; x < profile.length; x++) {
 			for(int y = 0; y < profile[0].length; y++) {
-				profile[x][y] = profile[x][y]/3;
+				profile[x][y] = profile[x][y]/seqCount;
 			}
 		}
 		
