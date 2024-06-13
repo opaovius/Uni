@@ -79,11 +79,14 @@ public class ProfileSequenceAlignment {
 	
 		double[][] profile = new double[alphabet.size()][SAll.get(0).length()];
 		
+		// Durchgehen aller Strings
 		for(int x = 0; x < SAll.size(); x++) {
+			// Durchgehen aller Buchstaben des Stringes
 			for(int y = 0; y < SAll.get(x).length(); y++) {
 				
 				char curr = SAll.get(x).charAt(y);
 				
+				// Hinzufuegen, falls Buchstabe des Stringes an Stelle y == Stelle z des Profiles
 				for(int z = 0; z < alphabet.size(); z++) {
 					if(curr == alphabet.get(z)) {
 						profile[z][y]++;
@@ -92,6 +95,7 @@ public class ProfileSequenceAlignment {
 			}
 		}
 		
+		// Teilen durch die Summer aller Sequenzen
 		for(int x = 0; x < profile.length; x++) {
 			for(int y = 0; y < profile[0].length; y++) {
 				profile[x][y] = profile[x][y]/seqCount;
@@ -237,12 +241,15 @@ public class ProfileSequenceAlignment {
 		
 		List<Character> alphabet = new ArrayList<>();
 		
+		// Alle Sequenzen durchgehen
 		for(int x = 0; x < SAll.size(); x++) {
 			
 			String curr = SAll.get(x);
 			
+			// Durchgehen der Buchstaben einer Sequenz
 			for(int y = 0; y < curr.length(); y++) {
 
+				// Wenn Alphabet leer
 				if(alphabet.size() == 0) {
 					alphabet.add(curr.charAt(y));
 				}
@@ -250,6 +257,7 @@ public class ProfileSequenceAlignment {
 					
 					boolean inside = false;
 					
+					// Nachschauen, ob der derzeitige Buchstabe im Alphabet bereits vorhanden ist 
 					for(int z = 0; z < alphabet.size(); z++) {
 						
 						char currChar = alphabet.get(z);
@@ -259,6 +267,7 @@ public class ProfileSequenceAlignment {
 							break;
 						}
 					}
+					// Wenn nicht hinzufuegen
 					if(!inside) {
 						alphabet.add(curr.charAt(y));
 					}
@@ -390,32 +399,4 @@ public class ProfileSequenceAlignment {
 		System.out.println();
 	}
 
-}
-
-class Node {
-	
-	double cost;
-	String tag;
-	
-	public Node(double cost, String tag) {
-		this.cost = cost;
-		this.tag = tag;
-	}
-	
-	public void setCost(int cost){
-		this.cost = cost;
-	}
-	
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-	
-	public double getCost() {
-		return cost;
-	}
-	
-	public String getTag() {
-		return tag;
-	}
-	
 }
