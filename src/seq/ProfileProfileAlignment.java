@@ -468,31 +468,3 @@ public class ProfileProfileAlignment {
 			}
 		}
 }
-
-class Node {
-	
-	double cost;
-	String tag;
-	
-	public Node(double cost, String tag) {
-		this.cost = cost;
-		this.tag = tag;
-	}
-	
-	public void setCost(int cost){
-		this.cost = cost;
-	}
-	
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-	
-	public double getCost() {
-		return cost;
-	}
-	
-	public String getTag() {
-		return tag;
-	}
-	
-}
